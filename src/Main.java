@@ -6,12 +6,12 @@ public class Main {
         Task task2 = new Task("Task 2", "Description 2");
 
         Epic epic1 = new Epic("Epic 1", "Description 1");
-        Subtask subtask1 = new Subtask("Subtask 1", "Description 1", epic1);
-        Subtask subtask2 = new Subtask("Subtask 2", "Description 2", epic1);
-
         manager.addTask(task1);
         manager.addTask(task2);
         manager.addEpic(epic1);
+
+        Subtask subtask1 = new Subtask("Subtask 1", "Description 1", epic1.getId());
+        Subtask subtask2 = new Subtask("Subtask 2", "Description 2", epic1.getId());
         manager.addSubtask(subtask1);
         manager.addSubtask(subtask2);
 
@@ -32,7 +32,10 @@ public class Main {
 
         // Updating status
         subtask1.setStatus(Status.DONE);
+        manager.updateSubtask(subtask1);
+
         subtask2.setStatus(Status.DONE);
+        manager.updateSubtask(subtask2);
 
         System.out.println("Epic status after subtasks are done:");
         System.out.println(epic1.getTitle() + " - " + epic1.getStatus());
